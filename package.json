@@ -1,20 +1,8 @@
 {
-  "name": "@geolonia/template-library-name",
+  "name": "@geolonia/my-project",
   "version": "0.0.1",
-  "description": "Replace with your library description",
+  "description": "Replace with your project description",
   "type": "module",
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "exports": {
-    ".": {
-      "import": "./dist/index.js",
-      "types": "./dist/index.d.ts"
-    }
-  },
-  "files": [
-    "dist"
-  ],
   "scripts": {
     "build": "tsc",
     "typecheck": "tsc --noEmit",
@@ -26,9 +14,6 @@
   },
   "engines": {
     "node": ">=22"
-  },
-  "publishConfig": {
-    "access": "public"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.4.6",

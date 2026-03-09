@@ -1,12 +1,7 @@
 /**
- * @geolonia/template-library-name
- *
- * Replace this file with your library's entry point.
+ * Replace this file with your project's entry point.
  */
 
-/**
- * Example: replace with your exported functions/classes/types.
- */
 export function hello(name: string): string {
   return `Hello, ${name}!`;
 }

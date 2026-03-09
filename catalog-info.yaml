@@ -61,7 +61,6 @@ metadata:
   # 例: ["typescript", "library", "sdk"]
   tags:
     - typescript
-    - library
 
   # 関連リンク（ドキュメント、Slack チャンネル等）
   links:
@@ -74,7 +73,7 @@ spec:
   # service: API サーバー、バックエンドサービス
   # website: Web フロントエンド
   # documentation: ドキュメントサイト
-  type: library
+  type: "{{TYPE}}"
 
   # ライフサイクル
   # experimental: 試験的、本番利用前

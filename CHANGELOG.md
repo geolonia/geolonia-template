@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
-- Initial template structure for Geolonia TypeScript library development
+- Initial template structure for Geolonia TypeScript projects
 - TypeScript 5 strict mode configuration (`tsconfig.json`)
 - Biome for linting and formatting (`biome.json`) — see ADR-0001
 - Lefthook for Git hooks (`lefthook.yml`) — see ADR-0002
