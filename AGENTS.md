@@ -1,20 +1,18 @@
 # AGENTS.md
 
-> Agent-agnostic instructions for Claude Code, Codex, Cursor, Copilot, and other coding agents.
-> See CLAUDE.md for Claude Code-specific settings.
+> Agent-agnostic project instructions for all AI coding tools.
+> Claude Code users: see CLAUDE.md for hooks and workflow.
 
-## Tech Stack
+## Project
 
-| Tool | Purpose | Why |
-|------|---------|-----|
-| Node.js 22+ | Runtime | LTS with native ESM, top-level await |
-| TypeScript 5+ (strict) | Language | Type safety, better tooling, prevents `any` abuse |
-| pnpm | Package manager | Faster installs, disk-efficient, strict dependency resolution |
-| Biome | Lint + Format | 10-25x faster than ESLint+Prettier. Single tool, no config conflicts |
-| Vitest | Testing | Native ESM, fast, Vite-powered |
-| Lefthook | Git hooks | Go binary, fast, parallel execution |
+<!-- TODO: Replace with your project info -->
 
-## Build & Test Commands
+**Name**: my-library
+**Description**: A TypeScript library that does X.
+**Owner**: group:geolonia/your-team
+**License**: MIT
+
+## Commands
 
 ```bash
 pnpm install          # Install dependencies
@@ -29,14 +27,20 @@ pnpm run test:watch   # Vitest watch mode
 
 ## Architecture
 
-- `src/` — Source code (TypeScript)
-- `tests/` — Tests mirror the structure of `src/`
-- `dist/` — Compiled output (generated, git-ignored)
-- `docs/decisions/` — Architecture Decision Records (ADRs)
+<!-- TODO: Describe your project's structure and design intent -->
+<!-- Focus on things that aren't obvious from reading the code -->
 
-## Coding Conventions
+```
+src/        # Source code
+tests/      # Tests (mirrors src/ structure)
+dist/       # Compiled output (git-ignored)
+docs/decisions/  # Architecture Decision Records
+```
 
-### Branch Naming
+## Conventions
+
+### Branches
+
 ```
 feat/<description>    # New features
 fix/<description>     # Bug fixes
@@ -44,50 +48,42 @@ chore/<description>   # Maintenance, deps
 docs/<description>    # Documentation only
 ```
 
-### Commit Messages (Conventional Commits)
+### Commits — Conventional Commits
+
 ```
 feat: add new export function
 fix: correct edge case in parser
-chore: update dependencies
-docs: improve README
 ```
 
-### PR Rules
-- Small PRs (< 400 lines diff) preferred
-- Each PR must have a linked GitHub Issue (`Closes #N`)
-- All CI checks must pass before merge
-- CodeRabbit review required
+### Pull Requests
 
-## Code Style
-
-All style rules are enforced by **Biome** (`biome.json`). Do not modify `biome.json` to suppress errors.
-
-Key rules:
-- `any` is **forbidden** (`noExplicitAny: error`)
-- Non-null assertions (`!`) are **forbidden** (`noNonNullAssertion: error`)
-- All imports must be used (`noUnusedImports: error`)
-- Use `const` over `let` when possible (`useConst: error`)
+- Small PRs preferred (< 400 lines diff)
+- Each PR links a GitHub Issue (`Closes #N`)
+- All CI checks pass before merge
 
 ## Testing
 
 - **Test-first**: Write tests before implementation
+- **Tests are specs**: Tests define expected behavior based on requirements — not the current implementation. If a test fails, investigate the implementation first
 - **Mirror structure**: `src/foo/bar.ts` → `tests/foo/bar.test.ts`
-- **Coverage**: All public exports must have tests
-- **No skipping**: Skipped tests = incomplete tests
+
+## Gotchas
+
+<!-- TODO: Document non-obvious pitfalls specific to this project -->
+<!-- Things that can't be caught by linters or hooks -->
+<!-- Examples:
+- "MapLibre sets transform on marker root elements — never apply CSS transform directly on them"
+- "FIWARE tenant names must not contain hyphens (causes 400)"
+- "All config values must go through src/config/defaults.ts — no hardcoding"
+-->
 
 ## Security
 
+<!-- TODO: Add project-specific security constraints -->
+<!-- Examples:
+- "This repo will be open-sourced. Never embed internal infrastructure details (AWS account IDs, internal hostnames, etc.)"
+- "All deployment config must be supplied via environment variables, never hardcoded"
+-->
+
 - Never commit `.env` or secrets
-- Run `pnpm audit` before releasing
-- No `eval`, `innerHTML`, `dangerouslySetInnerHTML`
-- Review OWASP Top 10 for applicable risks
-
-## Prohibited Actions
-
-Do NOT modify these files (see guard.sh Hook 5):
-- `biome.json` — Lint/format config
-- `tsconfig.json` — TypeScript config
-- `lefthook.yml` — Git hooks config
-- `.github/workflows/` — CI/CD pipelines
-- `catalog-info.yaml` — ISMS metadata
-- `CODEOWNERS` — Review requirements
+- Style and lint rules are enforced by Biome (`biome.json`). Do not weaken rules to suppress errors — fix the code instead
