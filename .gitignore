@@ -1,0 +1,8 @@
+node_modules/
+dist/
+coverage/
+*.d.ts.map
+.env
+.env.local
+.env.*.local
+.code-review-done

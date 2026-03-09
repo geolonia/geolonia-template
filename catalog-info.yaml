@@ -1,0 +1,103 @@
+# catalog-info.yaml — Backstage Entity Definition
+#
+# このファイルは Backstage カタログに登録するためのメタデータです。
+# 新しいリポジトリを作成したら、以下の {{PLACEHOLDER}} を実際の値に置き換えてください。
+# ISMS（情報セキュリティ管理システム）との連携にも使用されます。
+#
+# 詳細: https://github.com/geolonia/geolonia-backstage
+# ISMS統合: https://github.com/geolonia/geolonia-backstage/issues/93
+
+# Backstage API バージョン。v1alpha1 が現在の標準。
+apiVersion: backstage.io/v1alpha1
+
+# エンティティの種類。
+# - Component: ソフトウェアコンポーネント（ライブラリ、サービス、Web サイト等）
+# - System: 複数の Component をまとめる論理グループ
+# - API: 公開 API 定義
+# - Resource: データベース、S3バケット等のインフラリソース
+kind: Component
+
+metadata:
+  # リポジトリ名と同じ名前を推奨（小文字、ハイフン区切り）
+  # 例: geolonia-template-library
+  name: "{{PROJECT_NAME}}"
+
+  # 人が読むための表示名（日本語可）
+  # 例: "Geolonia TypeScript Library Template"
+  title: "{{DISPLAY_NAME}}"
+
+  # このコンポーネントの1行説明
+  # 例: "Geolonia TypeScript ライブラリ開発の標準テンプレート"
+  description: "{{DESCRIPTION}}"
+
+  annotations:
+    # GitHub リポジトリとの紐付け（必須）
+    # 形式: {org}/{repo}
+    # 例: geolonia/geolonia-template-library
+    github.com/project-slug: "geolonia/{{PROJECT_NAME}}"
+
+    # ISMS: データ分類
+    # none: 公開情報のみ
+    # internal: 社内情報
+    # confidential: 機密情報
+    # restricted: 最機密情報
+    # 例: internal
+    geolonia.com/data-classification: "none"
+
+    # ISMS: バックアップ要否
+    # true: 定期バックアップが必要（本番データを扱う場合）
+    # false: バックアップ不要（コードのみ）
+    # 例: false
+    geolonia.com/backup-required: "false"
+
+    # ISMS: 規制対象
+    # pii: 個人情報を扱う
+    # payment: 決済情報を扱う
+    # none: 規制対象外
+    # 例: none
+    geolonia.com/regulatory-scope: "none"
+
+  # 検索・フィルタリング用タグ
+  # 例: ["typescript", "library", "sdk"]
+  tags:
+    - typescript
+    - library
+
+  # 関連リンク（ドキュメント、Slack チャンネル等）
+  links:
+    - url: "https://github.com/geolonia/{{PROJECT_NAME}}"
+      title: GitHub Repository
+
+spec:
+  # コンポーネント種別
+  # library: npm パッケージ / SDK
+  # service: API サーバー、バックエンドサービス
+  # website: Web フロントエンド
+  # documentation: ドキュメントサイト
+  type: library
+
+  # ライフサイクル
+  # experimental: 試験的、本番利用前
+  # production: 本番稼働中
+  # deprecated: 非推奨、移行先あり
+  lifecycle: experimental
+
+  # オーナー（必須）
+  # Backstage の Group または User を指定
+  # 形式: group:{group-slug} または user:{username}
+  # 例: group:geolonia/platform
+  owner: "group:geolonia/{{TEAM}}"
+
+  # 所属するシステム（必須 — ISMS コンプライアンスに必要）
+  # このコンポーネントが属する上位 System を指定
+  # System 一覧: https://github.com/geolonia/geolonia-backstage （要確認）
+  # 例: geolonia-developer-platform
+  system: "{{SYSTEM}}"
+
+  # このコンポーネントが依存するコンポーネント一覧
+  # 例: ["component:default/other-library"]
+  dependsOn: []
+
+  # このコンポーネントが提供する API 一覧
+  # 例: ["api:default/my-api"]
+  providesApis: []

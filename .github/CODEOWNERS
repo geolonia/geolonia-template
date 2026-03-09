@@ -1,0 +1,12 @@
+# CODEOWNERS
+# Default owner for all files
+# Replace @geolonia/your-team with the actual team slug.
+* @geolonia/platform
+
+# Critical configuration files require platform team review
+# WHY: These files define quality standards. Changes need extra scrutiny.
+biome.json @geolonia/platform
+tsconfig.json @geolonia/platform
+lefthook.yml @geolonia/platform
+catalog-info.yaml @geolonia/platform
+.github/workflows/ @geolonia/platform

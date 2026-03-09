@@ -1,0 +1,28 @@
+# Lefthook configuration
+# See: https://github.com/evilmartians/lefthook
+#
+# WHY Lefthook: Go製シングルバイナリで高速。並列実行対応。
+# Node.js 外のツール（Biome等）との相性が良い。
+# See: docs/decisions/0002-use-lefthook.md
+
+pre-commit:
+  parallel: true
+  commands:
+    format:
+      glob: "*.{ts,js,json}"
+      run: npx biome format --write {staged_files}
+      stage_fixed: true
+    lint:
+      glob: "*.{ts,js}"
+      run: npx biome check {staged_files}
+    typecheck:
+      run: npx tsc --noEmit
+
+pre-push:
+  commands:
+    typecheck:
+      run: npx tsc --noEmit
+    lint:
+      run: npx biome check .
+    test:
+      run: npx vitest run
