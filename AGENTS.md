@@ -30,7 +30,7 @@ pnpm run test:watch   # Vitest watch mode
 <!-- TODO: Describe your project's structure and design intent -->
 <!-- Focus on things that aren't obvious from reading the code -->
 
-```
+```text
 src/        # Source code
 tests/      # Tests (mirrors src/ structure)
 dist/       # Compiled output (git-ignored)
@@ -41,7 +41,7 @@ docs/decisions/  # Architecture Decision Records
 
 ### Branches
 
-```
+```text
 feat/<description>    # New features
 fix/<description>     # Bug fixes
 chore/<description>   # Maintenance, deps
@@ -50,7 +50,7 @@ docs/<description>    # Documentation only
 
 ### Commits — Conventional Commits
 
-```
+```text
 feat: add new export function
 fix: correct edge case in parser
 ```
