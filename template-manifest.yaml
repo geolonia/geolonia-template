@@ -67,6 +67,9 @@ files:
     - path: .claude/skills/code-review-expert/SKILL.md
       purpose: "コードレビュースキル"
 
+    - path: .claude/skills/init-project/SKILL.md
+      purpose: "プロジェクト初期設定スキル（対話的プレースホルダー置換）"
+
 # ── プレースホルダー ──
 # 適用時にプロジェクト情報で置換する
 placeholders:

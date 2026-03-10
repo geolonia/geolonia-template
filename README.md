@@ -49,16 +49,42 @@ AI エージェントに以下のように指示してください:
 
 > **Note**: CLI での適用（`npx @geolonia/template apply`）は未実装です。進捗は [#10](https://github.com/geolonia/geolonia-template/issues/10) を参照してください。
 
-### カスタマイズ
+### カスタマイズ（`/init-project`）
+
+Claude Code で `/init-project` を実行すると、対話的にプロジェクト情報を入力できます:
+
+```
+> /init-project
+
+プロジェクト設定の状況:
+❓ PROJECT_NAME: (未入力)
+❓ DESCRIPTION: (未入力)
+...
+
+以下の項目が未入力です。入力してください（スキップする場合は空 Enter）:
+1. PROJECT_NAME — リポジトリ名（小文字・ハイフン区切り）
+2. DESCRIPTION — プロジェクトの1行説明
+...
+```
+
+**特徴:**
+- **何度でも実行可能** — 未入力の項目だけを聞きます。CODEOWNERS のチーム名や Backstage の資産 ID が後から決まったら、その時点で `/init-project` を再実行
+- **引数指定** — `/init-project TEAM=frontend SYSTEM=geolonia-maps` で対話なしに特定項目だけ更新
+- **更新対象** — `catalog-info.yaml`, `package.json`, `.github/CODEOWNERS`, `AGENTS.md`, `CLAUDE.md` のプレースホルダーを一括置換
+
+<details>
+<summary>手動でカスタマイズする場合</summary>
 
 | ファイル | 変更箇所 |
 |--------|--------|
 | `package.json` | `name`, `description` |
 | `catalog-info.yaml` | プレースホルダーを実際の値に置換（`{{PROJECT_NAME}}`, `{{DESCRIPTION}}`, `{{DISPLAY_NAME}}`, `{{TEAM}}`, `{{SYSTEM}}`, `{{TYPE}}`）。詳細は `template-manifest.yaml` の `placeholders` セクション参照 |
-| `.github/CODEOWNERS` | チームスラッグ |
+| `.github/CODEOWNERS` | `{{TEAM}}` をチームスラッグに置換 |
 | `AGENTS.md` | プロジェクト概要・Gotchas（全エージェントツール共通 — Claude Code / Codex / Cursor 等が読む） |
 | `CLAUDE.md` | Claude Code 固有の設定・ワークフロー（Claude Code のみが読む） |
 | `README.md` | このファイル自体 |
+
+</details>
 
 用途に応じて追加:
 - **ライブラリ**: `publishConfig`, `main`, `types`, `exports` を package.json に追加。`tsconfig.json` に `declaration: true`。CI に npm publish ジョブ追加
