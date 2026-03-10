@@ -36,11 +36,13 @@ files:
     - path: biome.json
       purpose: "Lint + Format (ESLint + Prettier の代替)"
       conflicts_with: [".eslintrc*", ".eslintrc.js", ".prettierrc*", ".prettierrc.js"]
+      conflicts_with_package_json_keys: ["eslintConfig", "prettier"]
       migration: "npx @biomejs/biome migrate で ESLint 設定を変換可能"
 
     - path: lefthook.yml
       purpose: "Git hooks (pre-commit: format + lint, pre-push: typecheck + test)"
       conflicts_with: [".husky/", ".lintstagedrc*"]
+      conflicts_with_package_json_keys: ["husky", "lint-staged"]
 
     - path: catalog-info.yaml
       purpose: "Backstage + ISMS メタデータ"
@@ -104,13 +106,13 @@ apply_to_existing:
   steps:
     - "template-manifest.yaml を読む"
     - "required ファイルをコピー（merge_strategy に従う）"
-    - "recommended ファイルについて conflicts_with を検査"
+    - "recommended ファイルについて conflicts_with および conflicts_with_package_json_keys を検査"
     - "衝突がなければ recommended ファイルをコピー"
     - "衝突があれば警告し、migration ヒントを提示"
     - "placeholders を実際の値で置換"
-    - "devDependencies を追加: @biomejs/biome, lefthook, vitest, typescript, @types/node"
-    - "package.json scripts を追加: build, typecheck, lint, lint:fix, format, test"
-    - "pnpm install && npx lefthook install を実行"
+    - "既存の package manager と package.json の内容を確認し、必要な devDependencies を追加"
+    - "既存 scripts と衝突しない形で build, typecheck, lint, lint:fix, format, test を追加"
+    - "検出した package manager で install を実行し、対応する方法で lefthook を有効化"
 
   do_not_touch:
     - "既存の src/ や tests/ のコードは変更しない"
