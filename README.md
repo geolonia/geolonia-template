@@ -5,17 +5,29 @@ Geolonia TypeScript プロジェクトのベーステンプレート。
 
 ## Getting Started
 
-### 1. Clone & Rename
+### 方法 1: 新規リポジトリ（GitHub UI）
+
+1. このリポジトリの **"Use this template"** → **"Create a new repository"** をクリック
+2. リポジトリ名と説明を入力して作成
+3. クローンしてカスタマイズ（下記「カスタマイズ」参照）
+
+### 方法 2: 新規リポジトリ（CLI）
 
 ```bash
-git clone https://github.com/geolonia/geolonia-template.git your-project-name
-cd your-project-name
-rm -rf .git
-git init
-git checkout -b main
+gh repo create my-project --template geolonia/geolonia-template --public
+gh repo clone my-project
+cd my-project
 ```
 
-### 2. Customize
+### 方法 3: 既存リポジトリに適用
+
+```bash
+npx @geolonia/template apply
+```
+
+または、AI エージェントが `template-manifest.yaml` を読んで必要なファイルを適用できます。
+
+### カスタマイズ
 
 | ファイル | 変更箇所 |
 |--------|--------|
@@ -31,7 +43,7 @@ git checkout -b main
 - **フロントエンド**: Vite, React, TailwindCSS 等を追加
 - **API**: Lambda handler, Express/Hono 等を追加
 
-### 3. Setup
+### セットアップ
 
 ```bash
 pnpm install
