@@ -41,8 +41,8 @@ cd my-project
 
 AI エージェントに以下のように指示してください:
 
-> このリポジトリに geolonia-template を適用してください。
-> https://github.com/geolonia/geolonia-template/blob/main/template-manifest.yaml を読んで、
+> このリポジトリに [geolonia-template](https://github.com/geolonia/geolonia-template) を適用してください。
+> リポジトリの `template-manifest.yaml` を読んで、
 > `apply_to_existing` の手順に従ってファイルを追加してください。
 
 エージェントが `template-manifest.yaml` の `required` / `recommended` / `optional` を判断し、衝突チェック付きで適用します。
@@ -172,7 +172,7 @@ mv scripts/hooks/guards.d/review-enforcer.sh.disabled \
 | ファイル | 問題 | 効果 |
 |---------|------|------|
 | `config-protection.sh` | エージェントが biome.json 等のルールを緩める | Write/Edit で設定ファイルの変更をブロック |
-| `review-enforcer.sh` | レビューなしで push してしまう | `/code-review-expert` 実行後のマーカーがないと push をブロック |
+| `review-enforcer.sh` | レビューなしで push してしまう | `/code-review-expert` 実行後のマーカー（`.code-review-done`）がないと push をブロック。マーカーはスキルが自動生成 |
 
 #### Stop Hook: テストなし完了防止（手動設定）
 

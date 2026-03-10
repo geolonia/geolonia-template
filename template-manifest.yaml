@@ -69,6 +69,7 @@ files:
 
     - path: .claude/skills/init-project/SKILL.md
       purpose: "プロジェクト初期設定スキル（対話的プレースホルダー置換）"
+      recommended_for_apply: true
 
 # ── プレースホルダー ──
 # 適用時にプロジェクト情報で置換する

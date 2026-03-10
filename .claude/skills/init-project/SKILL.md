@@ -25,7 +25,7 @@ tags:
 以下のファイルをスキャンし、`{{...}}` プレースホルダーの残存状況を確認する:
 
 - `catalog-info.yaml` — `{{PROJECT_NAME}}`, `{{DESCRIPTION}}`, `{{DISPLAY_NAME}}`, `{{TEAM}}`, `{{SYSTEM}}`, `{{TYPE}}`
-- `.github/CODEOWNERS` — チームスラッグ（`@geolonia/` の後ろ）
+- `.github/CODEOWNERS` — `{{TEAM}}` プレースホルダーが残っているか
 - `package.json` — `name` が `@geolonia/my-project` のまま、または `description` が `Replace with your project description` のまま
 - `AGENTS.md` — プロジェクト概要の `<!-- TODO:` コメントが残っている
 - `CLAUDE.md` — `<!-- TODO:` コメントが残っている
@@ -37,7 +37,7 @@ tags:
 
 ### Step 2: 結果表示
 
-```
+```text
 プロジェクト設定の状況:
 
 ✅ PROJECT_NAME: my-geocoder
@@ -46,7 +46,7 @@ tags:
 ❓ TEAM: (未入力)
 ❓ SYSTEM: (未入力)
 ✅ TYPE: library
-❓ CODEOWNERS: デフォルト値 (@geolonia/platform)
+❓ CODEOWNERS: {{TEAM}} が未置換
 ❓ AGENTS.md: TODO コメントが残っています
 ❓ CLAUDE.md: TODO コメントが残っています
 ```
@@ -57,7 +57,7 @@ tags:
 
 質問の形式:
 
-```
+```text
 以下の項目が未入力です。入力してください（スキップする場合は空 Enter）:
 
 1. DISPLAY_NAME — 人が読む表示名（日本語可）
@@ -88,7 +88,7 @@ tags:
 | PROJECT_NAME | `catalog-info.yaml`, `package.json` | プレースホルダー置換 + package.json の `name` を `@geolonia/{値}` に |
 | DESCRIPTION | `catalog-info.yaml`, `package.json` | プレースホルダー置換 + package.json の `description` |
 | DISPLAY_NAME | `catalog-info.yaml` | プレースホルダー置換 |
-| TEAM | `catalog-info.yaml`, `.github/CODEOWNERS` | プレースホルダー置換 + CODEOWNERS の全 `@geolonia/platform` を `@geolonia/{値}` に |
+| TEAM | `catalog-info.yaml`, `.github/CODEOWNERS` | `{{TEAM}}` を置換（CODEOWNERS の全 `@geolonia/{{TEAM}}` を `@geolonia/{値}` に） |
 | SYSTEM | `catalog-info.yaml` | プレースホルダー置換 |
 | TYPE | `catalog-info.yaml` | プレースホルダー置換（値は library/service/website/documentation のいずれか） |
 | AGENTS.md 概要 | `AGENTS.md` | `<!-- TODO: Replace with your project info -->` コメントと以下のプレースホルダーテキストを実際の内容に置換 |
@@ -96,10 +96,10 @@ tags:
 
 ### Step 5: 結果表示
 
-```
+```text
 ✅ 以下のファイルを更新しました:
   - catalog-info.yaml (DISPLAY_NAME, TEAM, SYSTEM)
-  - .github/CODEOWNERS (@geolonia/platform → @geolonia/frontend)
+  - .github/CODEOWNERS (@geolonia/{{TEAM}} → @geolonia/frontend)
   - AGENTS.md (プロジェクト概要)
 
 ⏭️ スキップされた項目: CLAUDE.md
@@ -111,7 +111,7 @@ tags:
 
 `/init-project KEY=VALUE ...` で対話なしに特定項目だけ更新できる:
 
-```
+```bash
 /init-project TEAM=frontend SYSTEM=geolonia-maps
 ```
 
@@ -121,4 +121,4 @@ tags:
 
 - `template-manifest.yaml` 自体のプレースホルダー定義（`placeholders:` セクション）は更新しない。あれはテンプレート適用時の参照情報
 - package.json の `name`, `version`, `dependencies` のうち、`name` と `description` のみ更新対象。`version` と `dependencies` は変更しない
-- CODEOWNERS の置換は `@geolonia/platform`（デフォルト値）の場合のみ実行。既にカスタム値が入っている場合はスキップ
+- CODEOWNERS の置換は `{{TEAM}}` プレースホルダーが残っている場合のみ実行。既に具体的なチーム名に置換済みの場合はスキップ

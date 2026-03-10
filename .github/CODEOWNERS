@@ -1,9 +1,9 @@
 # CODEOWNERS
-# Default owner for all files
-# Replace @geolonia/your-team with the actual team slug.
+# {{TEAM}} は /init-project スキルまたは手動で実際のチームスラッグに置換してください。
+# 置換前はこのファイルは機能しません（GitHub が {{TEAM}} を認識できないため）。
 * @geolonia/{{TEAM}}
 
-# Critical configuration files require platform team review
+# Critical configuration files require team review
 # WHY: These files define quality standards. Changes need extra scrutiny.
 biome.json @geolonia/{{TEAM}}
 tsconfig.json @geolonia/{{TEAM}}
