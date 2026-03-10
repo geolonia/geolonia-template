@@ -11,8 +11,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `secret-protection.sh.disabled`: Bash bypass detection strengthened (grep/awk/sed/source/redirect/command substitution)
 - `secret-protection.sh.disabled`: Extracted `get_file_path()` function to eliminate duplication
 - `.claude/skills/code-review-expert/SKILL.md`: Added `text` language specifier to compact template code block
+- `README.md`: Renamed `/init-project` section from "カスタマイズ" to "初期セットアップ" to clarify it is a post-install step
+- `README.md`: Expanded `.claude/skills/` in Directory Structure to show `init-project/` and `code-review-expert/`
 
 ### Added
+- `README.md`: New **Skills** section listing `/init-project` and `/code-review-expert` with descriptions
+
+
 - Initial template structure for Geolonia TypeScript projects
 - TypeScript 5 strict mode configuration (`tsconfig.json`)
 - Biome for linting and formatting (`biome.json`) — see ADR-0001

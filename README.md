@@ -49,9 +49,9 @@ AI エージェントに以下のように指示してください:
 
 > **Note**: CLI での適用（`npx @geolonia/template apply`）は未実装です。進捗は [#10](https://github.com/geolonia/geolonia-template/issues/10) を参照してください。
 
-### カスタマイズ（`/init-project`）
+### 初期セットアップ（`/init-project`）
 
-Claude Code で `/init-project` を実行すると、対話的にプロジェクト情報を入力できます:
+テンプレートを適用したら、Claude Code で `/init-project` を実行してプロジェクト情報を入力します:
 
 ```
 > /init-project
@@ -91,6 +91,17 @@ Claude Code で `/init-project` を実行すると、対話的にプロジェク
 - **フロントエンド**: Vite, React, TailwindCSS 等を追加
 - **API**: Lambda handler, Express/Hono 等を追加
 
+## Skills
+
+Claude Code のスラッシュコマンドとして呼び出せるスキルが同梱されています。
+
+| スキル | 呼び出し方 | 概要 |
+|-------|-----------|------|
+| `/init-project` | `> /init-project` | テンプレート適用後の初期セットアップ。プロジェクト名・チーム名等のプレースホルダーを対話的に置換。何度でも実行可能 |
+| `/code-review-expert` | `> /code-review-expert --auto` | SOLID 原則・セキュリティ・品質を構造的にレビュー。`--auto` で P0/P1 を自動修正し push ブロック解除マーカーを生成 |
+
+スキルの実体は `.claude/skills/{skill-name}/SKILL.md` に格納されています。
+
 ## What's Included
 
 ### 4層品質モデル
@@ -123,7 +134,9 @@ Claude Code で `/init-project` を実行すると、対話的にプロジェク
 .
 ├── .claude/                    # Claude Code 設定
 │   ├── settings.json           #   hooks 設定
-│   └── skills/                 #   スキル
+│   └── skills/                 #   スキル（/コマンドで呼び出し可能）
+│       ├── init-project/       #     /init-project — 初期セットアップ
+│       └── code-review-expert/ #     /code-review-expert — コードレビュー
 ├── .github/                    # GitHub 設定
 │   ├── workflows/ci.yml        #   CI
 │   ├── CODEOWNERS              #   レビュー必須設定
