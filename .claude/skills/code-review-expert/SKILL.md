@@ -442,7 +442,7 @@ if (value) { ... }  // fails for 0, "", false
 
 Use this **compact format only**. Do NOT use the full format below. Every token saved here is a token available for commit/push/PR steps that MUST follow.
 
-```
+```text
 Review: X files, Y lines
 P0: 0 | P1: 0 | P2: N | P3: N
 [If P0/P1 exist, list ONLY those — one line each: file:line — description]
