@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - `secret-protection.sh.disabled`: Bash bypass detection strengthened (grep/awk/sed/source/redirect/command substitution)
 - `secret-protection.sh.disabled`: Extracted `get_file_path()` function to eliminate duplication
+- `secret-protection.sh.disabled`: Exclude `.env.example` / `.env.sample` / `.env.template` / `.env.dist` from blocking (structure docs are allowed)
 - `.claude/skills/code-review-expert/SKILL.md`: Added `text` language specifier to compact template code block
 
 ### Added
