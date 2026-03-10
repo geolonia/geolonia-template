@@ -164,6 +164,10 @@ Claude Code で `/init-project` を実行すると、対話的にプロジェク
 mv scripts/hooks/guards.d/config-protection.sh.disabled \
    scripts/hooks/guards.d/config-protection.sh
 
+# シークレットファイル保護を有効化
+mv scripts/hooks/guards.d/secret-protection.sh.disabled \
+   scripts/hooks/guards.d/secret-protection.sh
+
 # push 前レビュー強制を有効化
 mv scripts/hooks/guards.d/review-enforcer.sh.disabled \
    scripts/hooks/guards.d/review-enforcer.sh
@@ -172,6 +176,7 @@ mv scripts/hooks/guards.d/review-enforcer.sh.disabled \
 | ファイル | 問題 | 効果 |
 |---------|------|------|
 | `config-protection.sh` | エージェントが biome.json 等のルールを緩める | Write/Edit で設定ファイルの変更をブロック |
+| `secret-protection.sh` | エージェントが .env を読み取り・上書きする | Read/Write/Edit/Bash で `.env*` ファイルへのアクセスをブロック |
 | `review-enforcer.sh` | レビューなしで push してしまう | `/code-review-expert` 実行後のマーカー（`.code-review-done`）がないと push をブロック。マーカーはスキルが自動生成 |
 
 #### Stop Hook: テストなし完了防止（手動設定）
